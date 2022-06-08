@@ -4,17 +4,22 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
+var enemyHealth = 50;
+var enemyAttack = 12;
+
+
 function fight() {
     window.alert("The fight has begun!");
   } 
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
-var enemyHealth = 50;
-var enemyAttack = 12;
+//Loop array
+for(var i = 0; i < enemyNames.length; i++) {
+}
 
-var fight = function() {
+var fight = function(enemyName) {
     //Alert players that they starting the round
   window.alert("Welcome to Robot Gladiators!");
   var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
@@ -29,7 +34,7 @@ if (promptFight === "fight" || promptFight === "FIGHT") {
 
   // check enemy's health
   if (enemyHealth <= 0) {
-    window.alert(enemyName + " has died!");
+    window.alert(+ " has died!");
   } else {
     window.alert(enemyName + " still has " + enemyHealth + " health left.");
   }
@@ -64,4 +69,6 @@ if (promptFight === "fight" || promptFight === "FIGHT") {
   } 
 };
 
-fight();
+for(var i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i]);
+}
