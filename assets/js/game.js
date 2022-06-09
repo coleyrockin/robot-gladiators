@@ -67,26 +67,53 @@ var fight = function(enemyName) {
   } // end of while loop
 }; // end of fight function
 
-for (var i = 0; i < enemyNames.length; i++) {
-  //play still aliveee, keep fighting mate
-if (playerHealth > 0) {
-  // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
-  window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
+// function to start a new game***
+ var startGame = function() {
+  // reset player stats
+  playerHealth = 100;
+  playerAttack = 10;
+  playerMoney = 10;
 
-  // pick new enemy to fight based on the index of the enemyNames array
-  var pickedEnemyName = enemyNames[i];
+  // other logic remains the same
+  for (var i = 0; i < enemyNames.length; i++) {
+    //if player keeps fighting
+    if (playerHealth > 0) {
+      
+      window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
+      //picking new enemy
+      var pickedEnemyName = enemyNames[i];
+      //reset health  
+      enemyHealth = 50;
+      //pass the value into fight function
+      fight(pickedEnemyName);
+    }
+    
+    //player wins your robot sucks
+    else {
+    window.alert('You have lost your robot in battle! Game Over!');
+    break;
+    }
+  }
+  //after loop ends
+  endGame();
+};
 
-  // reset enemyHealth before starting new fight
-  enemyHealth = 50;
+// function to end the entire game
+var endGame = function() {
+  window.alert ('the game has now ended. Lets see how you did!')
+  // if player is still alive, player wins!
+  if (playerHealth > 0) {
+    window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+  } 
+  else {
+    window.alert("You've lost your robot in battle.");
+  }
+  // ask player if they'd like to play again
+var playAgainConfirm = window.confirm('Would you like to play again?');
 
-  // use debugger to pause script from running and check what's going on at that moment in the code
-  // debugger;
-
-  // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
-  fight(pickedEnemyName);
-}
-else {
-  window.alert('You have lost your robot in battle! Game Over!');
-  break;
-}
-}
+if (playAgainConfirm) {
+    startGame();
+  } else {
+    window.alert('Thank you for playing Robot Gladiators! Come back soon!');
+  }
+};
